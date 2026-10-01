@@ -1,0 +1,45 @@
+{
+  "name": "ldap-forms",
+  "private": true,
+  "description": "Self-service access requests: LDAP login, admin-built forms, user applications.",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "packageManager": "pnpm@12.8.1",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "12.8.1",
+      "onFail": "download"
+    }
+  },
+  "scripts": {
+    "prepare": "simple-git-hooks && pnpm -F @ldap-forms/shared build",
+    "dev": "pnpm -F @ldap-forms/shared build && pnpm -r --parallel dev",
+    "build": "pnpm -r build",
+    "typecheck": "pnpm -r typecheck",
+    "lint": "oxlint --type-aware",
+    "test": "pnpm -r test",
+    "test:e2e": "pnpm -r test:e2e",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test && pnpm test:e2e"
+  },
+  "devDependencies": {
+    "lint-staged": "^17.6.0",
+    "oxlint": "^1.86.0",
+    "oxlint-tsgolint": "^7.0.2003",
+    "prettier": "^3.4.2",
+    "simple-git-hooks": "^2.14.0",
+    "typescript": "~6.0.3"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm exec lint-staged"
+  },
+  "lint-staged": {
+    "*": "prettier --write --ignore-unknown",
+    "*.{ts,tsx,js,jsx,mjs,cjs}": "oxlint --type-aware"
+  }
+}

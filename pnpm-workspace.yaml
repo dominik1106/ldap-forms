@@ -1,0 +1,7 @@
+packages:
+  - apps/*
+  - packages/*
+
+# simple-git-hooks is installed by the root `prepare` script instead.
+allowBuilds:
+  simple-git-hooks: false
